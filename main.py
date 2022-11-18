@@ -11,7 +11,7 @@ destination = ['Mexico City', 'New York City', 'City of London', 'Rio de Janeiro
 food = ['Happy Hour Tavern', 'Irish Delight' , 'Gionos Pizza', 'Mama Mia Italian', 'Hola Amigos Tacos', 'Pad Thai Hour', 'Jerk Chicken Restaurant']
 transportation = ['motorcycle', 'bicycle', 'vehicle', 'train', 'moped','electric scooter']
 entertainment = ['movies', 'bowling', 'hiking', 'magic show', 'musical', 'music feast', 'bus tour', 'zip line']
-
+rest = ['hotel', 'airBnB', 'apartment', 'motel', 'manor', 'boat', 'tiny home']
 
 
 
@@ -33,7 +33,13 @@ def pick_destination():
         user_input = input(f"Okay, well what do you think of {random_destination} instead? ")
     return random_destination
          
-
+def pick_rest():
+    random_rest = random.choice(rest)
+    user_input = input(f"We have to pick a place to rest for the night, how does {random_rest} sound?")
+    while user_input != "y":
+        random_rest = random.choice(random_rest)
+        user_input = input(f"Okay, how about {random_rest} instead?")
+    return random_rest
 
 def pick_resturant():
     random_restaurant = random.choice(food)
@@ -61,9 +67,9 @@ def pick_transportation():
         user_input = input(f"Okay, well what do you think of {random_transportation} instead? ")
     return random_transportation
 
-def confirm_trip(destination, transportation, entertainment, restaurant):
+def confirm_trip(destination, transportation, entertainment, restaurant, rest):
     print(f'You are going to {destination} by the way getting around in {transportation}')
-    print(f"While you are there, you will be dining at {restaurant} and enjoying the activity of{entertainment} ")
+    print(f"While you are there, you will be dining at {restaurant} and enjoying the activity of{entertainment} then you will end the day at {rest}")
     user_input = input(f"Are you happy with these choices? y/n: ")
     if user_input == "y":
         print('Have a great day trip!')
@@ -77,7 +83,8 @@ def run_day_trip():
     confirmed_transportation = pick_transportation()
     confirmed_entertainment = pick_entertainment()
     confirmed_restaurant = pick_resturant()
-    confirm_trip(confirmed_destination, confirmed_transportation, confirmed_entertainment, confirmed_restaurant)
+    confirmed_rest = pick_rest()
+    confirm_trip(confirmed_destination, confirmed_transportation, confirmed_entertainment, confirmed_restaurant,confirmed_rest)
 
 run_day_trip()
 
